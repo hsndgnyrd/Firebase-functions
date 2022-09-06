@@ -1,6 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -19,5 +23,11 @@ const auth = getAuth();
 // CREATE New User by mail and password
 export const createUser = async (email, password) => {
   const { user } = await createUserWithEmailAndPassword(auth, email, password);
+  return user;
+};
+
+// Sign in
+export const signInUser = async (email, password) => {
+  const { user } = await signInWithEmailAndPassword(auth, email, password);
   return user;
 };
