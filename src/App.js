@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState } from "react";
-import { createUser, signInUser } from "./firebase";
+import { createUser, signInUser, logoutUser } from "./firebase";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -18,9 +18,15 @@ function App() {
     console.log(user);
   };
 
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    await logoutUser();
+  };
+
   return (
     <div>
       <h1>Hi Firebase</h1>
+      <button onClick={handleLogout}>Logout</button>
       {/* CREATE USER */}
       <form onSubmit={handleSubmit}>
         <input
